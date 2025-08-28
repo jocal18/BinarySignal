@@ -73,11 +73,10 @@ def post_discord(webhook_url: str, content: str):
 def main():
     args = get_args()
     now = datetime.now(TZ)
-
-    # Optional time guard near TSX open to avoid noise outside the window
+    
     if args.guard:
-        if not (now.hour == 9 and 31 <= now.minute <= 40):
-            # Quiet exit outside window
+        # Only act if Toronto local time is between 09:40 and 09:50
+        if not (now.hour == 9 and 40 <= now.minute <= 50):
             return
 
     # Fetch yesterday's closes & today's opens
