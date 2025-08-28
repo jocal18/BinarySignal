@@ -1,0 +1,16 @@
+# render.yaml
+services:
+  - type: cron
+    name: vfveqt-discord-signal
+    runtime: python
+    repo: https://github.com/<your_user>/<your_repo>
+    schedule: "33 13 * * 1-5"   # Weekdays 09:33 America/Toronto during EDT (UTC-only cron)
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python signal.py"
+    envVars:
+      - key: DISCORD_BOT_TOKEN
+        sync: false      # set in dashboard as a secret
+      - key: DISCORD_CHANNEL_ID
+        sync: false
+      - key: DELTA_BPS
+        value: "7"
