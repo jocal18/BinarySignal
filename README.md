@@ -9,16 +9,36 @@ Designed for Canadian market hours (America/Toronto). Runs after the TSX/TSX-V o
 
 At each trading day *t*:
 
-- Compute **overnight return** for each asset *i ∈ {A, B}*:
-  
-  \[ r^{(i)}_t = \frac{Open^{(i)}_t - Close^{(i)}_{t-1}}{Close^{(i)}_{t-1}} \]
+- Compute **overnight return** for each asset $i \in \lbrace A, B \rbrace$: 
 
-- Define the **edge** as \( r^{(B)}_t - r^{(A)}_t \) (in **bps** when multiplied by \(10^4\)).
-- If you **currently hold A**, **switch to B** only if edge \(>\ \Delta\) (hysteresis threshold).
-- If you **currently hold B**, **switch to A** only if \(-\)edge \(>\ \Delta\) (equivalently \( r^{(A)}_t - r^{(B)}_t > \Delta\)).
-- Otherwise: **Hold** (message will say “inside hysteresis”).
 
-This is exactly what the bot computes and posts to your Discord channel.
+$$
+r^{i}_t=\frac{\text{Open}^{i} _t-\text{Close}^{i} _{t-1}}{\text{Close}^{i} _{t-1}}
+$$
+
+- Define the **edge** as:
+
+$$
+\text{edge}_t = r^{(B)}_t - r^{(A)}_t
+$$
+
+(in **bps** when multiplied by $10^{4}$).
+
+- If you **currently hold A**, **switch to B** only if:
+
+$$
+\text{edge}_t > \Delta
+$$
+
+- If you **currently hold B**, **switch to A** only if:
+
+$$
+-r^{(B)}_t + r^{(A)}_t > \Delta
+$$
+
+(equivalently $r^{(A)}_t-r^{(B)}_t > \Delta$
+
+- Otherwise: **Hold** (inside hysteresis).
 
 ---
 
