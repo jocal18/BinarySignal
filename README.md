@@ -40,6 +40,7 @@ $$
 
 - Otherwise: **Hold** (inside hysteresis).
 
+- You can backtest the strategy using StockBinaryComparison.py
 ---
 
 ## ✨ Features
@@ -63,7 +64,7 @@ $$
 
 ## ⚙️ Configuration
 
-### Option A — Environment file (`.env`)
+### Environment file (`.env`)
 
 Create `.env` next to `signal2.py`:
 
@@ -78,3 +79,30 @@ DELTA_BPS=7
 TIME_GUARD=1
 OPEN_RETRIES=8
 OPEN_RETRY_DELAY=10
+```
+To have it run on a schedule on a Mac: 
+- Create folder: ~/binary-signal-bot, add signal.py, .env, and a venv.
+- copy the  LaunchAgent in ~/Library/LaunchAgents/
+- Make sure your Mac doesn't go to sleep
+- Modify the .env accordingly to what you want
+
+
+## ⏰ The Time Guard
+
+The **time guard** is a safety check inside the bot.  
+
+- Even if the LaunchAgent runs at a certain time, the bot will only **act** if the local time in `America/Toronto` is within the guard window (default: **09:40–09:50**).  
+- If the current time is outside that window, the script exits silently.
+
+### Why it matters
+- **Correct data**: ensures the "open" price is actually available before computing signals.  
+- **Avoid spam**: if you schedule multiple runs (e.g. 09:45 and 09:50), only the valid one posts.  
+- **DST-proof**: you don’t need to change your cron job when Toronto switches between EST/EDT. The guard enforces local time.
+
+### Why it’s in `.env`
+The guard is optional and configurable. In `.env`:
+
+```ini
+TIME_GUARD=1   # enforce 09:40–09:50 Toronto
+TIME_GUARD=0   # disable guard (bot runs whenever cron triggers)
+```
