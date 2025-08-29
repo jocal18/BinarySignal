@@ -58,9 +58,6 @@ $$
 
 - `signal.py` – the signal generator & Discord notifier.
 - `requirements.txt` – Python dependencies.
-- `.env.example` – template for local environment variables (copy to `.env`).
-
-> **Note:** Do **not** commit your real `.env` with secrets.
 
 ---
 
@@ -68,7 +65,7 @@ $$
 
 ### Option A — Environment file (`.env`)
 
-Create `.env` next to `signal.py`:
+Create `.env` next to `signal2.py`:
 
 ```ini
 DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/XXX/YYY
