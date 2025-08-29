@@ -1,0 +1,22 @@
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.binarysignal.bot</string>
+  <key>WorkingDirectory</key><string>/Users/YOURUSER/binary-signal-bot</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/YOURUSER/binary-signal-bot/.venv/bin/python</string>
+    <string>/Users/YOURUSER/binary-signal-bot/signal.py</string>
+    <string>--guard</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>45</integer><key>Weekday</key><integer>2</integer></dict>
+    <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>45</integer><key>Weekday</key><integer>3</integer></dict>
+    <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>45</integer><key>Weekday</key><integer>4</integer></dict>
+    <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>45</integer><key>Weekday</key><integer>5</integer></dict>
+    <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>45</integer><key>Weekday</key><integer>6</integer></dict>
+  </array>
+  <key>StandardOutPath</key><string>/Users/YOURUSER/binary-signal-bot/log.out</string>
+  <key>StandardErrorPath</key><string>/Users/YOURUSER/binary-signal-bot/log.err</string>
+</dict>
+</plist>
