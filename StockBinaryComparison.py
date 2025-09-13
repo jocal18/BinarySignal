@@ -1,16 +1,3 @@
-"""
-VFV.TO vs SU.TO Switching Strategy (Robust & Fixed)
----------------------------------------------------
-- Rule: Compare *overnight returns* r_i(t) = (Open_t - Close_{t-1}) / Close_{t-1}.
-- If the other asset beats the current by > hysteresis (bps), SWITCH at the OPEN.
-- Mark portfolio to CLOSE each day.
-
-Key fixes:
-- Duplicate-safe index handling (drop duplicate timestamps).
-- Passive equity is computed *vectorized* as a 1-D Series (no per-iteration lookup).
-- Safe scalar getter for active loop to avoid Series->float errors.
-"""
-
 import argparse
 from dataclasses import dataclass
 import numpy as np
